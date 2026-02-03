@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question for You Babe💖</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(to bottom, #ffe6f0, #fff0f5);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        h1 {
+            color: #ff3399;
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        button {
+            padding: 20px 40px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            margin: 10px;
+        }
+        
+        #yesBtn {
+            background-color: #ff66b2;
+            color: white;
+            animation: grow 1s infinite alternate;
+            padding: 20px 40px;
+            font-size: 1.2em;
+        }
+        
+        @keyframes grow {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.2);
+            }
+        }
+        
+        #noBtn {
+            background-color: #ffcccc;
+            color: #ff3399;
+            position: absolute;
+            user-select: none;
+            padding: 12px 20px;
+            font-size: 1.1em;
+            border-radius: 12px;
+        }
+        
+        #celebration {
+            display: none;
+            position: absolute;
+            top: 10%;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 15px pink;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1> Mahnoor, when are you taking me out for pizza?🥺😭</h1>
+
+    <button id="yesBtn">On 7 Feb 2026❤️</button>
+    <button id="noBtn">Never😒</button>
+
+
+    <img id="celebration" src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3dWJhYWEzNDhkdXVxdWM5bG95MXk1dXZ0emg2NzF4Y2hueTJveGgzYyZlcD12MV9naWZzX3RyZW5kaW5nJmN0PWc/NoPNkgzHD8HSK6Nr5l/giphy.gif" style="display:none; width:80%; max-width:500px; border-radius:20px; box-shadow:0 0 15px pink;"
+    />
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const celebration = document.getElementById('celebration');
+
+        // Yes button click
+        yesBtn.addEventListener('click', () => {
+            yesBtn.style.display = 'none';
+            noBtn.style.display = 'none';
+            document.getElementById('celebration').style.display = 'block';
+        });
+
+        // Make "Never" button dodge mouse
+        const dodgeDistance = 200; // how far button jumps
+
+        document.addEventListener('mousemove', (e) => {
+            const btnRect = noBtn.getBoundingClientRect();
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+
+            // Check if mouse is close to button
+            if (
+                mouseX > btnRect.left - 50 &&
+                mouseX < btnRect.right + 50 &&
+                mouseY > btnRect.top - 50 &&
+                mouseY < btnRect.bottom + 50
+            ) {
+                let newX = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+                let newY = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+
+                // Ensure button doesn't go out of screen
+                newX = Math.min(Math.max(newX, 0), window.innerWidth - noBtn.offsetWidth);
+                newY = Math.min(Math.max(newY, 0), window.innerHeight - noBtn.offsetHeight);
+
+                noBtn.style.left = newX + 'px';
+                noBtn.style.top = newY + 'px';
+            }
+        });
+
+        // Initial random position
+        noBtn.style.left = Math.random() * (window.innerWidth - noBtn.offsetWidth) + 'px';
+        noBtn.style.top = Math.random() * (window.innerHeight - noBtn.offsetHeight) + 'px';
+    </script>
+
+</body>
+
+</html>
